@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class BlockIoApiEndpoints {
     private final HttpRequestFactory factory;
+    int expectedStatus = 200;
 
     public BlockIoApiEndpoints(HttpRequestFactory factory) {
         this.factory = factory;
@@ -24,7 +25,6 @@ public class BlockIoApiEndpoints {
                 .post(BLOCK_IO_NEW_ADDRESS, "")
                 .then().log().body().extract().response();
 
-        int expectedStatus = 200;
         assertThat(response.statusCode()).isEqualTo(expectedStatus);
 
         return response.as(PostNewAddressResponse.class);
@@ -36,7 +36,6 @@ public class BlockIoApiEndpoints {
                 .post(BLOCK_IO_BALANCE, "")
                 .then().log().body().extract().response();
 
-        int expectedStatus = 200;
         assertThat(response.statusCode()).isEqualTo(expectedStatus);
 
         return response.as(PostBalanceResponse.class);
@@ -48,7 +47,6 @@ public class BlockIoApiEndpoints {
                 .post(BLOCK_IO_TRANSACTION, "/?type=received")
                 .then().log().body().extract().response();
 
-        int expectedStatus = 200;
         assertThat(response.statusCode()).isEqualTo(expectedStatus);
 
         return response.as(GetReceivedTransactionResponse.class);
